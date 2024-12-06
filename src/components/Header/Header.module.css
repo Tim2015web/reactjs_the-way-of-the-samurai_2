@@ -1,0 +1,55 @@
+.header {
+  grid-area: 1 / 1 / 2 / 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  background-color: #4a678e;
+  border-radius: 16px;
+  padding: 0 20px;
+}
+
+.logotype {
+  display: flex;
+  text-decoration: unset;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.logotype__image {
+  width: 48px;
+  height: 48px;
+}
+
+.logotype__caption {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.login__button {
+  padding: 10px 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #4a678e;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login__button:hover {
+  border: 1px solid #ffffff;
+  background-color: #4a678e;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.login__button:focus {
+  outline: none;
+}
