@@ -1,41 +1,44 @@
-import classes from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
+import classes from "./Navbar.module.scss";
+
+const setActive = ({ isActive }) =>
+  `${classes.navbar__menuLink} ${
+    isActive ? classes.navbar__menuLinkActive : ""
+  }`;
 
 export default function Navbar() {
   return (
     <div className={classes.navbar}>
       <ul className={classes.navbar__menu}>
         <li>
-          <a
-            className={`${classes.navbar__menuLink} ${classes.active}`}
-            href="#"
-          >
+          <NavLink to="/" className={setActive}>
             Профиль
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a className={classes.navbar__menuLink} href="#">
+          <NavLink to="/messages" className={setActive}>
             Сообщения
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a className={classes.navbar__menuLink} href="#">
+          <NavLink to="/friends" className={setActive}>
             Друзья
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a className={classes.navbar__menuLink} href="#">
+          <NavLink to="/photos" className={setActive}>
             Фото
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a className={classes.navbar__menuLink} href="#">
+          <NavLink to="/music" className={setActive}>
             Музыка
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a className={classes.navbar__menuLink} href="#">
+          <NavLink to="/settings" className={setActive}>
             Настройки
-          </a>
+          </NavLink>
         </li>
       </ul>
     </div>

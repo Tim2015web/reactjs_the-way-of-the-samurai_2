@@ -1,5 +1,5 @@
 import classes from "./Header.module.css";
-import logotypeImage from "../../assets/icons/logotype.png";
+import logotypeIcon from "../../assets/icons/logotype.png";
 
 export default function Header() {
   return (
@@ -7,8 +7,8 @@ export default function Header() {
       <a href="#" className={classes.logotype}>
         <img
           className={classes.logotype__image}
-          src={logotypeImage}
-          alt="Logotype"
+          src={logotypeIcon}
+          alt="Логотип"
         />
         <p className={classes.logotype__caption}>Общаемся.ру</p>
       </a>

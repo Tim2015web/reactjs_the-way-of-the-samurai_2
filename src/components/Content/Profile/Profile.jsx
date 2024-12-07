@@ -1,9 +1,12 @@
-import classes from "./Profile.module.css";
+import NewPost from "./NewPost";
+import Posts from "./Posts";
+import classes from "./Profile.module.scss";
 
 export default function Profile() {
   return (
     <div className={classes.profile}>
-      <p>Profile</p>
+      <NewPost />
+      <Posts />
     </div>
   );
 }
