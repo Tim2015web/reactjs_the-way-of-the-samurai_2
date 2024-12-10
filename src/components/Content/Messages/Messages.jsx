@@ -1,8 +1,11 @@
 import classes from "./Messages.module.scss";
 import messagesIcon from "../../../assets/icons/messages.png";
-import data from "../../../data.js";
+import { NavLink } from "react-router";
 
-export default function Messages() {
+const setActive = ({ isActive }) =>
+  `${classes.main__user} ${isActive ? classes.main__userActive : ""}`;
+
+export default function Messages({ dataUserMessages }) {
   return (
     <div className={classes.messages}>
       <div className={classes.header}>
@@ -11,19 +14,25 @@ export default function Messages() {
           src={messagesIcon}
           alt="Сообщения"
         />
-        <p className={classes.header__title}>Messages</p>
+        <p className={classes.header__title}>Сообщения</p>
       </div>
 
       <div className={classes.main}>
         <div className={classes.main__users}>
-          {data.map((item, index) => (
-            <div key={index}>{item.name}</div>
-          ))}
+          <ul>
+            {dataUserMessages.map((item) => (
+              <li key={item.id}>
+                <NavLink to={"/messages/" + item.id} className={setActive}>
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className={classes.main__messages}>
-          {data[0].messages.map((msg, index) => (
-            <div key={index}>{msg}</div>
+          {dataUserMessages.map((item) => (
+            <div key={item.id}>{item.messages}</div>
           ))}
         </div>
       </div>

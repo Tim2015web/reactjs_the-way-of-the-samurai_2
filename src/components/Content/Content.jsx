@@ -7,12 +7,26 @@ import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import { Route, Routes } from "react-router";
 
-export default function Content() {
+export default function Content({ data, newPost, changePostText }) {
   return (
     <div className={classes.content}>
       <Routes>
-        <Route path="/" element={<Profile />} />
-        <Route path="/messages" element={<Messages />} />
+        <Route
+          path="/"
+          element={
+            <Profile
+              userProfile={data.userProfile}
+              userPosts={data.userPosts}
+              newPostText={data.newPostText}
+              newPost={newPost}
+              changePostText={changePostText}
+            />
+          }
+        />
+        <Route
+          path="/messages/*"
+          element={<Messages dataUserMessages={data.userMessages} />}
+        />
         <Route path="/friends" element={<Friends />} />
         <Route path="/photos" element={<Photos />} />
         <Route path="/music" element={<Music />} />
