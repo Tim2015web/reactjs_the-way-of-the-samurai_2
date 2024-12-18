@@ -1,32 +1,18 @@
 import classes from "./Content.module.css";
-import Profile from "./Profile/Profile";
-import Messages from "./Messages/Messages";
+import MessagesContainer from "./Messages/MessagesContainer";
 import Friends from "./Friends/Friends";
 import Photos from "./Photos/Photos";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import { Route, Routes } from "react-router";
+import ProfileContainer from "./Profile/profileContainer";
 
-export default function Content({ data, newPost, changePostText }) {
+export default function Content() {
   return (
     <div className={classes.content}>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Profile
-              userProfile={data.userProfile}
-              userPosts={data.userPosts}
-              newPostText={data.newPostText}
-              newPost={newPost}
-              changePostText={changePostText}
-            />
-          }
-        />
-        <Route
-          path="/messages/*"
-          element={<Messages dataUserMessages={data.userMessages} />}
-        />
+        <Route path="/" element={<ProfileContainer />} />
+        <Route path="/messages/*" element={<MessagesContainer />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/photos" element={<Photos />} />
         <Route path="/music" element={<Music />} />

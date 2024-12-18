@@ -4,11 +4,10 @@ import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
 
 export default function Profile({
-  userProfile,
-  userPosts,
-  newPostText,
-  newPost,
-  changePostText,
+  profilePage,
+  addPost,
+  onChangeText,
+  onChangeLink,
 }) {
   return (
     <div className={classes.profile}>
@@ -21,12 +20,13 @@ export default function Profile({
         <p className={classes.header__title}>Профиль</p>
       </div>
 
-      <ProfileInfo userProfile={userProfile} />
+      <ProfileInfo info={profilePage.info} />
       <ProfilePosts
-        userPosts={userPosts}
-        newPostText={newPostText}
-        newPost={newPost}
-        changePostText={changePostText}
+        posts={profilePage.posts}
+        newPostData={profilePage.newPostData}
+        addPost={addPost}
+        onChangeText={onChangeText}
+        onChangeLink={onChangeLink}
       />
     </div>
   );

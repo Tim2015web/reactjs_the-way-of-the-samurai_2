@@ -1,56 +1,42 @@
 import classes from "./Profile.module.scss";
 import defaultImage from "../../../assets/default.png";
-import { useRef, useState } from "react";
 
 export default function ProfilePosts({
-  userPosts,
-  newPostText,
-  newPost,
-  changePostText,
+  posts,
+  newPostData,
+  addPost,
+  onChangeText,
+  onChangeLink,
 }) {
-  const [postText, setPostText] = useState("");
-
-  const textRef = useRef();
-
-  function addPost() {
-    newPost(postText); // Добавляем пост
-    setPostText(""); // Сбрасываем текст
-  }
-
-  function onChangeText(event) {
-    setPostText(event.target.value); // Обновляем текст
-  }
-
   return (
     <div className={classes.posts}>
       <div className={classes.posts__header}>
         <p className={classes.posts__title}>Посты</p>
       </div>
 
-      {/* Добавить пост */}
       <div className={classes.posts__newPost}>
         <textarea
           className={classes.posts__textarea}
           placeholder="Напишите что-то..."
-          name="textAreaNewPost"
+          name="textNewPost"
           onChange={onChangeText}
-          value={postText} // Привязка к состоянию
-          ref={textRef}
+          value={newPostData.text}
         />
         <input
           className={classes.posts__input}
           type="text"
           placeholder="Вставьте ссылку на изображение..."
-          name="inoutNewPost"
+          name="linkNewPost"
+          onChange={onChangeLink}
+          value={newPostData.link}
         />
         <button className={classes.posts__button} onClick={addPost}>
           Добавить пост
         </button>
       </div>
 
-      {/* Все посты */}
       <div className={classes.posts__myPosts}>
-        {userPosts
+        {posts
           .slice()
           .reverse()
           .map((item) => (
@@ -60,7 +46,7 @@ export default function ProfilePosts({
                 src={item.image || defaultImage}
                 alt="Картинка поста"
               />
-              <p className={classes.posts__postText}>{item.text}</p>
+              <p className={classes.posts__postText}>{item.message}</p>
               <div className={classes.posts__actions}>
                 <span className={classes.posts__likeCount}>
                   {item.likes} лайков
