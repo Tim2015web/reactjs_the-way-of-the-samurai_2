@@ -6,40 +6,26 @@ const setActive = ({ isActive }) =>
     isActive ? classes.navbar__menuLinkActive : ""
   }`;
 
+const navItems = [
+  { to: "/profile", label: "Профиль" },
+  { to: "/messages", label: "Сообщения" },
+  { to: "/friends", label: "Друзья" },
+  { to: "/photos", label: "Фото" },
+  { to: "/music", label: "Музыка" },
+  { to: "/settings", label: "Настройки" },
+];
+
 export default function Navbar() {
   return (
     <div className={classes.navbar}>
       <ul className={classes.navbar__menu}>
-        <li>
-          <NavLink to="/" className={setActive}>
-            Профиль
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/messages" className={setActive}>
-            Сообщения
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/friends" className={setActive}>
-            Друзья
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/photos" className={setActive}>
-            Фото
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/music" className={setActive}>
-            Музыка
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/settings" className={setActive}>
-            Настройки
-          </NavLink>
-        </li>
+        {navItems.map(({ to, label }) => (
+          <li key={to}>
+            <NavLink to={to} className={setActive}>
+              {label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -1,6 +1,7 @@
 import classes from "./Messages.module.scss";
-import messagesIcon from "../../../assets/icons/messages.png";
+import headerIcon from "../../../assets/icons/messages.png";
 import { NavLink } from "react-router";
+import ContentHeader from "../ContentHeader";
 
 const setActive = ({ isActive }) =>
   `${classes.main__user} ${isActive ? classes.main__userActive : ""}`;
@@ -11,15 +12,8 @@ export default function Messages({
   onChangeMessage,
 }) {
   return (
-    <div className={classes.messages}>
-      <div className={classes.header}>
-        <img
-          className={classes.header__icon}
-          src={messagesIcon}
-          alt="Сообщения"
-        />
-        <p className={classes.header__title}>Сообщения</p>
-      </div>
+    <section className={classes.messages}>
+      <ContentHeader source={headerIcon} name="Сообщения" />
 
       <div className={classes.main}>
         <div className={classes.main__users}>
@@ -46,13 +40,13 @@ export default function Messages({
           className={classes.footer__textarea}
           placeholder="Введите сообщение..."
           name="textNewMessage"
-          onChange={onChangeMessage}
+          onChange={(event) => onChangeMessage(event.target.value)}
           value={messagesPage.newMessageText}
         ></textarea>
         <button className={classes.footer__button} onClick={addMessage}>
           Отправить
         </button>
       </div>
-    </div>
+    </section>
   );
 }

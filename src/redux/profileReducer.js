@@ -1,25 +1,30 @@
 let ADD_POST = "ADD-POST";
 let UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 let UPDATE_NEW_POST_LINK = "UPDATE-NEW-POST-LINK";
+let SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialState = {
-  info: {
-    name: "Иван Иванов",
-    location: "Москва, Россия",
-    dateOfBirth: "1990-05-15",
-    education:
-      "Московский Государственный Университет, факультет вычислительной математики и кибернетики",
-    webSite: "https://ivanivanov.com",
-    occupation: "Разработчик программного обеспечения",
-    interests: "Программирование, путешествия, чтение книг",
-    phoneNumber: "+7 900 123 45 67",
-    email: "ivan.ivanov@mail.ru",
+  // profile: null,
+  profile: {
+    id: null,
+    status: null,
+    name: null,
+    title: null,
+    avatar: null,
+    location: { country: null, city: null },
+    dateOfBirth: null,
+    education: null,
+    webSite: null,
+    occupation: null,
+    interests: null,
+    phoneNumber: null,
+    email: null,
     socialMedia: {
-      instagram: "@ivan_ivanov",
-      twitter: "@ivan_dev",
-      linkedin: "linkedin.com/in/ivanivanov",
+      instagram: null,
+      twitter: null,
+      linkedin: null,
     },
-    status: "На связи, пишите!",
+    statusText: null,
   },
   posts: [
     {
@@ -116,19 +121,29 @@ export default function profileReducer(state = initialState, action) {
         newPostData: { ...state.newPostData, link: action.payload },
       };
 
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+      };
+
     default:
       return state;
   }
 }
 
-export function addPostCreator() {
+export function addPost() {
   return { type: ADD_POST };
 }
 
-export function onChangeTextCreator(text) {
-  return { type: UPDATE_NEW_POST_TEXT, payload: text };
+export function onChangeText(payload) {
+  return { type: UPDATE_NEW_POST_TEXT, payload };
 }
 
-export function onChangeLinkCreator(link) {
-  return { type: UPDATE_NEW_POST_LINK, payload: link };
+export function onChangeLink(payload) {
+  return { type: UPDATE_NEW_POST_LINK, payload };
+}
+
+export function setUserProfile(payload) {
+  return { type: SET_USER_PROFILE, payload };
 }

@@ -2,26 +2,6 @@
   width: 100%;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  column-gap: 8px;
-
-  &__icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  &__title {
-    font-family: "Montserrat", sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: #4a678e;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-}
-
 .main {
   padding-top: 32px;
   display: flex;

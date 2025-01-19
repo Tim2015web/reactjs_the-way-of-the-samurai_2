@@ -30,7 +30,21 @@
   text-transform: uppercase;
 }
 
+.login {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.login img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+}
+
 .login__button {
+  height: fit-content;
   padding: 10px 20px;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
@@ -41,6 +55,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
+  text-decoration: none;
 }
 
 .login__button:hover {

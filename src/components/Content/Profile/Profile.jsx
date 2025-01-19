@@ -1,7 +1,8 @@
 import classes from "./Profile.module.scss";
-import messagesIcon from "../../../assets/icons/profile.png";
+import headerIcon from "../../../assets/icons/profile.png";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
+import ContentHeader from "../ContentHeader";
 
 export default function Profile({
   profilePage,
@@ -9,18 +10,12 @@ export default function Profile({
   onChangeText,
   onChangeLink,
 }) {
+  
   return (
-    <div className={classes.profile}>
-      <div className={classes.header}>
-        <img
-          className={classes.header__icon}
-          src={messagesIcon}
-          alt="Профиль"
-        />
-        <p className={classes.header__title}>Профиль</p>
-      </div>
+    <section className={classes.profile}>
+      <ContentHeader source={headerIcon} name="Профиль" />
 
-      <ProfileInfo info={profilePage.info} />
+      <ProfileInfo info={profilePage.profile} />
       <ProfilePosts
         posts={profilePage.posts}
         newPostData={profilePage.newPostData}
@@ -28,6 +23,6 @@ export default function Profile({
         onChangeText={onChangeText}
         onChangeLink={onChangeLink}
       />
-    </div>
+    </section>
   );
 }

@@ -29,7 +29,7 @@ export default function messagesReducer(state = initialState, action) {
       return {
         ...state,
         messages: [...state.messages, newMessage],
-        newMessageText: "", // Очищаем поле ввода
+        newMessageText: "",
       };
     }
 
@@ -45,10 +45,10 @@ export default function messagesReducer(state = initialState, action) {
 }
 
 // Action Creators
-export function addMessageCreator() {
+export function addMessage() {
   return { type: ADD_MESSAGE };
 }
 
-export function onChangeMessageCreator(message) {
-  return { type: UPDATE_NEW_MESSAGE_TEXT, payload: message };
+export function onChangeMessage(payload) {
+  return { type: UPDATE_NEW_MESSAGE_TEXT, payload };
 }

@@ -19,7 +19,7 @@ export default function ProfilePosts({
           className={classes.posts__textarea}
           placeholder="Напишите что-то..."
           name="textNewPost"
-          onChange={onChangeText}
+          onChange={(event) => onChangeText(event.target.value)}
           value={newPostData.text}
         />
         <input
@@ -27,7 +27,7 @@ export default function ProfilePosts({
           type="text"
           placeholder="Вставьте ссылку на изображение..."
           name="linkNewPost"
-          onChange={onChangeLink}
+          onChange={(event) => onChangeLink(event.target.value)}
           value={newPostData.link}
         />
         <button className={classes.posts__button} onClick={addPost}>
