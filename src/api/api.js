@@ -16,4 +16,8 @@ export const serverAPI = {
   postFollow(userId, status) {
     return localAPI.post(`follow/${userId}`, { status: status });
   },
+
+  postStatus(statusText) {
+    return localAPI.post(`updateStatus/0`, { newStatus: statusText });
+  },
 };

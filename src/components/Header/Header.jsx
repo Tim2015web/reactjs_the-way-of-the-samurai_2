@@ -1,4 +1,4 @@
-import classes from "./Header.module.css";
+import classes from "./Header.module.scss";
 import logotypeIcon from "../../assets/icons/logotype.png";
 import { NavLink } from "react-router";
 import profileIcon from "../../assets/user-avatar-default.jpg";
@@ -16,6 +16,7 @@ export default function Header({ isAuth, authAvatar, handleLogOut }) {
       </NavLink>
 
       <div className={classes.login}>
+
         {isAuth ? (
           <div className={classes.login}>
             <button className={classes.login__button} onClick={handleLogOut}>

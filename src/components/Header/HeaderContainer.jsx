@@ -15,7 +15,7 @@ function HeaderContainer({
     setAuthUserData(false);
     setAuthUserAvatar(null);
     localStorage.setItem("authToken", false);
-    localStorage.setItem("authAvatar", null);
+    localStorage.setItem("authAvatar", null);    
     navigate("/auth");
   }
 

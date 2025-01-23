@@ -52,6 +52,7 @@
   }
 
   &__status {
+    min-height: 56px;
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     font-weight: 600;
@@ -71,6 +72,48 @@
     font-size: 18px;
     color: white;
     margin-left: 8px;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  &__statusForm {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+  }
+
+  &__statusInput {
+    flex-grow: 1;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: #70bfff;
+    }
+  }
+
+  &__statusButton {
+    padding: 8px 12px;
+    font-size: 16px;
+    color: white;
+    background-color: #70bfff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #4a678e;
+    }
   }
 }
 
@@ -174,7 +217,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-
   &__postText {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
@@ -211,5 +253,4 @@
     font-size: 14px;
     color: #4a678e;
   }
-
 }

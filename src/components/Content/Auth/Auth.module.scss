@@ -12,7 +12,7 @@
   background-color: #f4f7fc;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
 
   form {
     display: flex;
@@ -25,10 +25,12 @@
       gap: 8px;
 
       label {
+        width: 100%;
         font-family: "Montserrat", sans-serif;
         font-size: 14px;
         color: #4a678e;
         font-weight: 600;
+        user-select: none;
       }
 
       input {
@@ -49,6 +51,16 @@
           color: #b0b0b0;
         }
       }
+
+      .error {
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        color: #e74c3c;
+      }
+    }
+
+    div:nth-child(3) {
+      flex-direction: row;
     }
 
     button {

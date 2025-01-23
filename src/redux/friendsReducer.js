@@ -122,6 +122,7 @@ export function handlePageSizeChangeThunk(value) {
   };
 }
 
+
 // Универсальный обработчик для кнопок "Назад" и "Вперед"
 export function handlePageChangeThunk(direction, pagesCount, currentPage) {
   return (dispatch) => {

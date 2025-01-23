@@ -1,41 +1,29 @@
-import { connect } from "react-redux";
 import Profile from "./Profile";
-import * as actions from "../../../redux/profileReducer";
-
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import axios from "axios";
-import { serverAPI } from "../../../api/api";
+import * as actions from "../../../redux/profileReducer";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
-function ProfileContainer({
-  profilePage,
-  addPost,
-  onChangeText,
-  onChangeLink,
-  setUserProfile,
-}) {
-  
+function ProfileContainer() {
+  const dispatch = useDispatch();
+  const profilePage = useSelector((state) => state.profileReducer);
   const { friendId = 0 } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    serverAPI.getProfile(friendId).then(({ data }) => {
-      setUserProfile(data);
-    });
-  }, [friendId, setUserProfile]);
+    dispatch(actions.getProfile(friendId));
+  }, [friendId, dispatch]);
 
   return (
     <Profile
       profilePage={profilePage}
-      addPost={addPost}
-      onChangeText={onChangeText}
-      onChangeLink={onChangeLink}
+      addPost={() => dispatch(actions.addPost())}
+      onChangeText={(text) => dispatch(actions.onChangeText(text))}
+      onChangeLink={(link) => dispatch(actions.onChangeLink(link))}
+      onStatusChange={(newStatus) => dispatch(actions.postStatus(newStatus))}
     />
   );
 }
 
-function mapStateToProps(state) {
-  return { profilePage: state.profileReducer };
-}
-
-export default connect(mapStateToProps, actions)(ProfileContainer);
+export default withAuthRedirect(ProfileContainer); // HOC

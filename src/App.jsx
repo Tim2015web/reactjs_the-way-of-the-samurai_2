@@ -5,7 +5,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setAuthUserData,setAuthUserAvatar } from "./redux/authReducer";
+import { setAuthUserData, setAuthUserAvatar } from "./redux/authReducer";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -14,14 +14,12 @@ export default function App() {
     const tokenIsAuth = localStorage.getItem("authToken");
     const tokenAuthAvatar = localStorage.getItem("authAvatar");
 
-    if (!tokenIsAuth) {
-      dispatch(setAuthUserData(false)); // Если токен отсутствует
+    if (!tokenIsAuth || tokenIsAuth === "false") {
+      dispatch(setAuthUserData(false));
     } else {
       dispatch(setAuthUserData(tokenIsAuth));
       dispatch(setAuthUserAvatar(tokenAuthAvatar));
     }
-
-    console.log("Старт приложения...");
   }, [dispatch]);
 
   return (

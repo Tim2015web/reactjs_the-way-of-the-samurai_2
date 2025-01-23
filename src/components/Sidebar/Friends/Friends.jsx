@@ -1,4 +1,4 @@
-import classes from "./Friends.module.css";
+import classes from "./Friends.module.scss";
 
 export default function Friends() {
   return (

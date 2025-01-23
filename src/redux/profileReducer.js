@@ -1,31 +1,13 @@
+import { serverAPI } from "../api/api";
+
 let ADD_POST = "ADD-POST";
 let UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 let UPDATE_NEW_POST_LINK = "UPDATE-NEW-POST-LINK";
-let SET_USER_PROFILE = "SET_USER_PROFILE";
+let SET_USER_PROFILE = "SET-USER-PROFILE";
+let UPDATE_STATUS = "UPDATE-STATUS";
 
 let initialState = {
-  // profile: null,
-  profile: {
-    id: null,
-    status: null,
-    name: null,
-    title: null,
-    avatar: null,
-    location: { country: null, city: null },
-    dateOfBirth: null,
-    education: null,
-    webSite: null,
-    occupation: null,
-    interests: null,
-    phoneNumber: null,
-    email: null,
-    socialMedia: {
-      instagram: null,
-      twitter: null,
-      linkedin: null,
-    },
-    statusText: null,
-  },
+  profile: null,
   posts: [
     {
       id: 0,
@@ -127,6 +109,12 @@ export default function profileReducer(state = initialState, action) {
         profile: action.payload,
       };
 
+    case UPDATE_STATUS:
+      return {
+        ...state,
+        profile: { ...state.profile, statusText: action.payload },
+      };
+
     default:
       return state;
   }
@@ -146,4 +134,25 @@ export function onChangeLink(payload) {
 
 export function setUserProfile(payload) {
   return { type: SET_USER_PROFILE, payload };
+}
+
+export function updateStatus(payload) {
+  return { type: UPDATE_STATUS, payload };
+}
+
+export function getProfile(friendId) {
+  return (dispatch) => {
+    serverAPI.getProfile(friendId).then(({ data }) => {
+      dispatch(setUserProfile(data));
+    });
+  };
+}
+
+// Санка для обновления статуса
+export function postStatus(newStatus) {
+  return (dispatch) => {
+    serverAPI.postStatus(newStatus).then(() => {
+      dispatch(updateStatus(newStatus));
+    });
+  };
 }

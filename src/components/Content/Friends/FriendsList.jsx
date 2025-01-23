@@ -20,7 +20,7 @@ export default function FriendsList({
                 <strong>Имя:&nbsp;</strong> {friend.name}
               </p>
               <p>
-                <strong>Статус:&nbsp;</strong> {friend.title}
+                <strong>Статус:&nbsp;</strong> {friend.statusText}
               </p>
               <p>
                 <strong>Местоположение:&nbsp;</strong>

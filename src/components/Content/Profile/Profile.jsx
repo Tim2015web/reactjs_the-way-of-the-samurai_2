@@ -9,13 +9,14 @@ export default function Profile({
   addPost,
   onChangeText,
   onChangeLink,
+  onStatusChange,
 }) {
-  
   return (
     <section className={classes.profile}>
       <ContentHeader source={headerIcon} name="Профиль" />
 
-      <ProfileInfo info={profilePage.profile} />
+      <ProfileInfo info={profilePage.profile} onStatusChange={onStatusChange} />
+
       <ProfilePosts
         posts={profilePage.posts}
         newPostData={profilePage.newPostData}

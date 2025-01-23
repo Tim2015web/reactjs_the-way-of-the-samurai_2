@@ -1,6 +1,6 @@
 import classes from "./Messages.module.scss";
 import headerIcon from "../../../assets/icons/messages.png";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import ContentHeader from "../ContentHeader";
 
 const setActive = ({ isActive }) =>
