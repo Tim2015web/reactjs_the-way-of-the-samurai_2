@@ -1,15 +1,17 @@
 import classes from "./Messages.module.scss";
 import headerIcon from "../../../assets/icons/messages.png";
-import { NavLink, useNavigate } from "react-router";
 import ContentHeader from "../ContentHeader";
+
+import { NavLink, useNavigate } from "react-router";
 
 const setActive = ({ isActive }) =>
   `${classes.main__user} ${isActive ? classes.main__userActive : ""}`;
 
 export default function Messages({
   messagesPage,
-  addMessage,
-  onChangeMessage,
+  messageText,
+  setMessageText,
+  newMessage,
 }) {
   return (
     <section className={classes.messages}>
@@ -40,10 +42,10 @@ export default function Messages({
           className={classes.footer__textarea}
           placeholder="Введите сообщение..."
           name="textNewMessage"
-          onChange={(event) => onChangeMessage(event.target.value)}
-          value={messagesPage.newMessageText}
+          onChange={(event) => setMessageText(event.target.value)}
+          value={messageText}
         ></textarea>
-        <button className={classes.footer__button} onClick={addMessage}>
+        <button className={classes.footer__button} onClick={newMessage}>
           Отправить
         </button>
       </div>

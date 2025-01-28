@@ -6,10 +6,10 @@ import ContentHeader from "../ContentHeader";
 
 export default function Profile({
   profilePage,
-  addPost,
-  onChangeText,
-  onChangeLink,
   onStatusChange,
+  newPost,
+  postData,
+  setPostData,
 }) {
   return (
     <section className={classes.profile}>
@@ -20,9 +20,9 @@ export default function Profile({
       <ProfilePosts
         posts={profilePage.posts}
         newPostData={profilePage.newPostData}
-        addPost={addPost}
-        onChangeText={onChangeText}
-        onChangeLink={onChangeLink}
+        newPost={newPost}       
+        postData={postData}
+        setPostData={setPostData}
       />
     </section>
   );

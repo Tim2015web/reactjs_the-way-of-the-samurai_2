@@ -1,19 +1,16 @@
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../../redux/friendsReducer";
 import Friends from "./Friends";
 import Preloader from "../../Preloader/Preloader";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
-function FriendsContainer({
-  friendsPage,
-  setCurrentPage,
-  getFriends,
-  handleSubscriptionThunk,
-  handlePageSizeChangeThunk,
-  handlePageChangeThunk,
-}) {
+function FriendsContainer({}) {
+  const dispatch = useDispatch();
+  const friendsPage = useSelector((state) => state.friendsReducer);
+
   useEffect(() => {
-    getFriends(friendsPage.currentPage, friendsPage.pageSize);
+    dispatch(actions.getFriends(friendsPage.currentPage, friendsPage.pageSize));
   }, [friendsPage.currentPage, friendsPage.pageSize]);
 
   // Пагинация-----
@@ -45,25 +42,29 @@ function FriendsContainer({
 
     return pages; // Возвращаем массив с номерами страниц
   }
-  
+
   return (
     <>
       {friendsPage.isFetching && <Preloader />}
       <Friends
         friendsPage={friendsPage}
-        setCurrentPage={setCurrentPage}
+        setCurrentPage={(page) => dispatch(actions.setCurrentPage(page))}
         getPageNumbers={getPageNumbers}
         pagesCount={pagesCount}
-        handleSubscriptionThunk={handleSubscriptionThunk}
-        handlePageSizeChangeThunk={handlePageSizeChangeThunk}
-        handlePageChangeThunk={handlePageChangeThunk}
+        handleSubscriptionThunk={(friendId, shouldFollow) =>
+          dispatch(actions.handleSubscriptionThunk(friendId, shouldFollow))
+        }
+        handlePageSizeChangeThunk={(pageSize) =>
+          dispatch(actions.handlePageSizeChangeThunk(pageSize))
+        }
+        handlePageChangeThunk={(direction, pagesCount, currentPage) =>
+          dispatch(
+            actions.handlePageChangeThunk(direction, pagesCount, currentPage)
+          )
+        }
       />
     </>
   );
 }
 
-function mapStateToProps(state) {
-  return { friendsPage: state.friendsReducer };
-}
-
-export default connect(mapStateToProps, actions)(FriendsContainer);
+export default withAuthRedirect(FriendsContainer); // HOC

@@ -1,5 +1,4 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
 const initialState = {
   users: [
@@ -16,7 +15,6 @@ const initialState = {
     { id: 3, messageText: "Доброе утро!" },
     { id: 4, messageText: "Позвони, когда освободишься." },
   ],
-  newMessageText: "",
 };
 
 export default function messagesReducer(state = initialState, action) {
@@ -24,31 +22,16 @@ export default function messagesReducer(state = initialState, action) {
     case ADD_MESSAGE: {
       const newMessage = {
         id: state.messages.length,
-        messageText: state.newMessageText,
+        messageText: action.payload,
       };
-      return {
-        ...state,
-        messages: [...state.messages, newMessage],
-        newMessageText: "",
-      };
+      return { ...state, messages: [...state.messages, newMessage] };
     }
-
-    case UPDATE_NEW_MESSAGE_TEXT:
-      return {
-        ...state,
-        newMessageText: action.payload,
-      };
 
     default:
       return state;
   }
 }
 
-// Action Creators
-export function addMessage() {
-  return { type: ADD_MESSAGE };
-}
-
-export function onChangeMessage(payload) {
-  return { type: UPDATE_NEW_MESSAGE_TEXT, payload };
+export function addMessage(payload) {
+  return { type: ADD_MESSAGE, payload };
 }

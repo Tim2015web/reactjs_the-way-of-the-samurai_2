@@ -3,10 +3,9 @@ import defaultImage from "../../../assets/default.png";
 
 export default function ProfilePosts({
   posts,
-  newPostData,
-  addPost,
-  onChangeText,
-  onChangeLink,
+  newPost,
+  postData,
+  setPostData,
 }) {
   return (
     <div className={classes.posts}>
@@ -19,18 +18,22 @@ export default function ProfilePosts({
           className={classes.posts__textarea}
           placeholder="Напишите что-то..."
           name="textNewPost"
-          onChange={(event) => onChangeText(event.target.value)}
-          value={newPostData.text}
+          onChange={(event) =>
+            setPostData((prev) => ({ ...prev, text: event.target.value }))
+          }
+          value={postData.text}
         />
         <input
           className={classes.posts__input}
           type="text"
           placeholder="Вставьте ссылку на изображение..."
           name="linkNewPost"
-          onChange={(event) => onChangeLink(event.target.value)}
-          value={newPostData.link}
+          onChange={(event) =>
+            setPostData((prev) => ({ ...prev, link: event.target.value }))
+          }
+          value={postData.link}
         />
-        <button className={classes.posts__button} onClick={addPost}>
+        <button className={classes.posts__button} onClick={newPost}>
           Добавить пост
         </button>
       </div>

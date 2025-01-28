@@ -1,16 +1,25 @@
 import Messages from "./Messages";
-import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../../redux/messagesReducer";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 function MessagesContainer() {
   const dispatch = useDispatch();
+  const [messageText, setMessageText] = useState("");
+
+  function newMessage() {
+    dispatch(actions.addMessage(messageText));
+    setMessageText("");
+  }
 
   return (
     <Messages
       messagesPage={useSelector((state) => state.messagesReducer)}
-      addMessage={(message) => dispatch(actions.addMessage(message))}
-      onChangeMessage={(text) => dispatch(actions.onChangeMessage(text))}
+      messageText={messageText}
+      setMessageText={setMessageText}
+      newMessage={newMessage}
     />
   );
 }

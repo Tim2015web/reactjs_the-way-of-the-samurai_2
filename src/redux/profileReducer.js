@@ -1,8 +1,6 @@
 import { serverAPI } from "../api/api";
 
 let ADD_POST = "ADD-POST";
-let UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-let UPDATE_NEW_POST_LINK = "UPDATE-NEW-POST-LINK";
 let SET_USER_PROFILE = "SET-USER-PROFILE";
 let UPDATE_STATUS = "UPDATE-STATUS";
 
@@ -70,10 +68,6 @@ let initialState = {
       likes: 3,
     },
   ],
-  newPostData: {
-    text: "",
-    link: "",
-  },
 };
 
 export default function profileReducer(state = initialState, action) {
@@ -81,26 +75,14 @@ export default function profileReducer(state = initialState, action) {
     case ADD_POST:
       const newPost = {
         id: state.posts.length,
-        message: state.newPostData.text,
-        image: state.newPostData.link,
+        message: action.postText,
+        image: action.postLink,
         likes: 0,
       };
       return {
         ...state,
         posts: [...state.posts, newPost],
         newPostData: { text: "", link: "" },
-      };
-
-    case UPDATE_NEW_POST_TEXT:
-      return {
-        ...state,
-        newPostData: { ...state.newPostData, text: action.payload },
-      };
-
-    case UPDATE_NEW_POST_LINK:
-      return {
-        ...state,
-        newPostData: { ...state.newPostData, link: action.payload },
       };
 
     case SET_USER_PROFILE:
@@ -120,16 +102,8 @@ export default function profileReducer(state = initialState, action) {
   }
 }
 
-export function addPost() {
-  return { type: ADD_POST };
-}
-
-export function onChangeText(payload) {
-  return { type: UPDATE_NEW_POST_TEXT, payload };
-}
-
-export function onChangeLink(payload) {
-  return { type: UPDATE_NEW_POST_LINK, payload };
+export function addPost(postText, postLink) {
+  return { type: ADD_POST, postText, postLink };
 }
 
 export function setUserProfile(payload) {

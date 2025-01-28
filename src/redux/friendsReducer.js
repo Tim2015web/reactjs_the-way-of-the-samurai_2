@@ -7,7 +7,7 @@ const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_FRIENDS_COUNT = "SET-TOTAL-FRIENDS-COUNT";
 const SET_PAGE_SIZE = "SET-PAGE-SIZE";
 const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
-const TOGGLE_IS_FOLLOWING = "TOGGLE-IS-FOLLOWING ";
+const TOGGLE_IS_FOLLOWING = "TOGGLE-IS-FOLLOWING";
 
 let initialState = {
   friends: [],
@@ -121,7 +121,6 @@ export function handlePageSizeChangeThunk(value) {
     dispatch(setCurrentPage(1));
   };
 }
-
 
 // Универсальный обработчик для кнопок "Назад" и "Вперед"
 export function handlePageChangeThunk(direction, pagesCount, currentPage) {
